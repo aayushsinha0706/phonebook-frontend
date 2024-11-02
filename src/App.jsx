@@ -101,7 +101,6 @@ const App = () => {
       setCategory('error')
       setTimeout(() => setNotification(null),5000)
       setPersons(persons.filter( person => person.id !== personToUpdate.id ))
-      
     })
     setNewNumber('')
     setNewName('')
