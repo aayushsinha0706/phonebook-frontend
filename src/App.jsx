@@ -49,7 +49,11 @@ const App = () => {
         setCategory('add')
         setTimeout(() => setNotification(null),5000)
       })
-       .catch( (error) => console.error(error))
+       .catch( (error) => {
+        setNotification(error.response.data.error)
+        setCategory('error')
+        setTimeout(() => setNotification(null),5000)
+       })
       setNewName('')
       setNewNumber('')
     }
