@@ -101,9 +101,16 @@ const App = () => {
       setTimeout(() => setNotification(null),5000)
     })
      .catch( (error) => {
-      setNotification(error.response.data.error)
-      setCategory('error')
-      setTimeout(() => setNotification(null),5000)
+      if (error.response.status === 404){
+        setNotification(`The person ${persons.find(person => person.id === id).name} has already been deleted from the phonebook`)
+        setCategory('error')
+        setTimeout(() => setNotification(null),5000)
+        setPersons(persons.filter( person => person.id!== id ))
+      } else {
+        setNotification(error.response.data.error)
+        setCategory('error')
+        setTimeout(() => setNotification(null),5000)
+      }
     })
     setNewNumber('')
     setNewName('')
