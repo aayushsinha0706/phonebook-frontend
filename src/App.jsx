@@ -100,11 +100,10 @@ const App = () => {
       setCategory('update')
       setTimeout(() => setNotification(null),5000)
     })
-     .catch( () => {
-      setNotification(`Information of ${updatedPerson.name} has been already deleted from the server`)
+     .catch( (error) => {
+      setNotification(error.response.data.error)
       setCategory('error')
       setTimeout(() => setNotification(null),5000)
-      setPersons(persons.filter( person => person.id !== personToUpdate.id ))
     })
     setNewNumber('')
     setNewName('')
